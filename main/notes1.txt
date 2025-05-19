@@ -1,0 +1,8 @@
+die will be 2 canvases that change depending on number rolled
+
+have to work out something to make them turn
+
+how to make dice:
+    cut canvas into 3x3
+        then put dot in middle
+            depending on what number we roll, fill certain squares with

@@ -25,10 +25,29 @@
             <p id="left-points">7</p>
         </div>
         <div id="inner-container">
+            <div class="dice-container" id="left">
+                <p id="piggy-1">piggy 1</p>
+                <canvas class="dice" id="left-die" width="250px" height="250px"></canvas>
+                <p class="score-title" id="left-score-title">score</p>
+                <p class="player-score" id="left-player">24</p>
+            </div>
+            <div class="dice-container" id="right">
+                <p id="piggy-2">piggy 2</p>
+                <canvas class="dice" id="right-die" width="250px" height="250px"></canvas>
+                <p class="score-title" id="left-score-title">score</p>
+                <p class="player-score" id="left-player">38</p>
+            </div>
         </div>
         <div id="right-score">
             <h1 id="points-header">points this turn</h1>
             <p id="right-points">18</p>
+        </div>
+    </div>
+    <div id="current-turn">
+        <p id="turn-title">current turn: </p>
+        <div id="bottom-container">
+            <p id="current-player">piggy 2</p>
+            <img id="bottom-pig" alt="pig" src="/assets/pig.png" />
         </div>
     </div>
     <script type="application/javascript" src="pig.js"></script>
