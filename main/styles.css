@@ -29,3 +29,20 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+#title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.title-img {
+    height: 45px;
+    margin: 10px;
+}
+
+.subtitle-img {
+    height: 30px;
+    margin: 10px;
+}
