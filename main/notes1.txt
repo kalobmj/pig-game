@@ -8,3 +8,7 @@ how to make dice:
             depending on what number we roll, fill certain squares with
 
             *Andy - done with forking - 
+
+possible dice color:    
+#00637C body
+#2A2B2D dots
