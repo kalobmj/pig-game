@@ -1,56 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>piggy dice game</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="title-container">
-        <img class="title-img" id="die-img" alt="die" src="/assets/game_die.png" />
-        <h1 id="main-title">2 dice in the barn</h1>
-        <img class="title-img" id="farmer-img" alt="farmer" src="/assets/female-farmer.png" />
+      <img
+        class="title-img"
+        id="die-img"
+        alt="die"
+        src="/assets/game_die.png"
+      />
+      <h1 id="main-title">2 dice in the barn</h1>
+      <img
+        class="title-img"
+        id="farmer-img"
+        alt="farmer"
+        src="/assets/female-farmer.png"
+      />
     </div>
     <div id="title-container">
-        <img class="subtitle-img" id="pig-img" alt="pig" src="/assets/pig.png" />
-        <h2 id="sub-title">pig dice game</h2>
-        <img class="subtitle-img" id="pig-img" alt="pig" src="/assets/pig.png" />
+      <img class="subtitle-img" id="pig-img" alt="pig" src="/assets/pig.png" />
+      <h2 id="sub-title">pig dice game</h2>
+      <img class="subtitle-img" id="pig-img" alt="pig" src="/assets/pig.png" />
     </div>
     <div id="game-container">
-        <div id="left-score">
-            <h1 id="points-header">points this turn</h1>
-            <p id="left-points">7</p>
+      <div id="left-score">
+        <h1 id="points-header">points this turn</h1>
+        <p id="left-points">7</p>
+      </div>
+      <div id="inner-container">
+        <div class="dice-container" id="left">
+          <p id="piggy-1">piggy 1</p>
+          <canvas
+            class="dice"
+            id="left-die"
+            width="250px"
+            height="250px"
+          ></canvas>
+          <p class="score-title" id="left-score-title">score</p>
+          <p class="player-score" id="left-player">24</p>
         </div>
-        <div id="inner-container">
-            <div class="dice-container" id="left">
-                <p id="piggy-1">piggy 1</p>
-                <canvas class="dice" id="left-die" width="250px" height="250px"></canvas>
-                <p class="score-title" id="left-score-title">score</p>
-                <p class="player-score" id="left-player">24</p>
-            </div>
-            <div class="dice-container" id="right">
-                <p id="piggy-2">piggy 2</p>
-                <canvas class="dice" id="right-die" width="250px" height="250px"></canvas>
-                <p class="score-title" id="left-score-title">score</p>
-                <p class="player-score" id="left-player">38</p>
-            </div>
+        <div class="dice-container" id="right">
+          <p id="piggy-2">piggy 2</p>
+          <canvas class="dice" id="right-die" width="250px" height="250px">
+          </canvas>
+          <p class="score-title" id="left-score-title">score</p>
+          <p class="player-score" id="left-player">38</p>
         </div>
-        <div id="right-score">
-            <h1 id="points-header">points this turn</h1>
-            <p id="right-points">18</p>
-        </div>
+      </div>
+      <div id="right-score">
+        <h1 id="points-header">points this turn</h1>
+        <p id="right-points">18</p>
+      </div>
     </div>
     <div id="current-turn">
-        <p id="turn-title">current turn: </p>
-        <div id="bottom-container">
-            <p id="current-player">piggy 2</p>
-            <img id="bottom-pig" alt="pig" src="/assets/pig.png" />
-        </div>
+      <p id="turn-title">current turn:</p>
+      <div id="bottom-container">
+        <p id="current-player">piggy 2</p>
+        <img id="bottom-pig" alt="pig" src="/assets/pig.png" />
+      </div>
     </div>
-    <script type="application/javascript" src="pig.js"></script>
-</body>
 
+    <div class="group-buttons">
+      <button class="btn btn--roll">Roll Dice 🎲</button>
+      <button class="btn btn--hold">Hold ⬇️</button>
+      <button class="btn new--game">New Game 🎮</button>
+    </div>
+
+    <script type="application/javascript" src="pig.js"></script>
+  </body>
 </html>
