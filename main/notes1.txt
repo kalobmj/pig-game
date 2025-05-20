@@ -6,3 +6,5 @@ how to make dice:
     cut canvas into 3x3
         then put dot in middle
             depending on what number we roll, fill certain squares with
+
+            *Andy - done with forking - 
