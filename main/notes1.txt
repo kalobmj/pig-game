@@ -10,6 +10,6 @@ how to make dice:
             *Andy - done with forking - 
 
 possible dice color:    
-#00637C body
+rgba(0, 99, 124, 0) body
 #2A2B2D dots
 
