@@ -12,4 +12,4 @@ how to make dice:
 possible dice color:    
 rgba(0, 99, 124, 0) body
 #2A2B2D dots
-
+#282D3C border

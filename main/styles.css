@@ -27,6 +27,16 @@ body {
   margin: 20px;
 }
 
+#left-die {
+  border: 5px solid #282D3C;
+  border-radius: 40px;
+}
+
+#right-die {
+  border: 5px solid #282D3C;
+  border-radius: 40px;
+}
+
 .dice-container {
   display: flex;
   justify-content: center;
