@@ -12,3 +12,4 @@ how to make dice:
 possible dice color:    
 #00637C body
 #2A2B2D dots
+
