@@ -53,8 +53,15 @@ for (let i = 0; i < rows; i++) {
     const dotX = (i * cellsize) + (cellsize / 2);
     const dotY = (j * cellsize) + (cellsize / 2);
 
+    console.log(`i: ${i}, j: ${j}, dotX: ${dotX}, dotY: ${dotY}`)
+    
+    // missing circle:
+    // i: 1, j: 0, dotX: 125, dotY: 41.666666666666664
+    // i: 2, j: 0, dotX: 208.33333333333331, dotY: 41.666666666666664
+    // i: 2, j: 1, dotX: 208.33333333333331, dotY: 125
+
     // circle size 
-    const radius = 20;
+    const radius = 30;
 
     // start drawing circle
     canvas1.beginPath();
@@ -62,14 +69,23 @@ for (let i = 0; i < rows; i++) {
     // draw circle based on coords
     canvas1.arc(dotX, dotY, radius, 0, 2 * Math.PI);
 
+    canvas2.beginPath();
+    canvas2.arc(dotX, dotY, radius, 0, 2 * Math.PI);
+
     // cirlce color
-    canvas1.strokeStyle = 'red';
+    canvas1.strokeStyle = 'white';
+
+    canvas2.strokeStyle = 'white';
 
     // draw circle line
     canvas1.stroke();
 
+    canvas2.stroke();
+    
     // fill middle of circle (maybe)
     canvas1.fill();
+    
+    canvas2.fill();
 
     // take this logic and apply to each cell
     // have logic to determine if cell needs dot (comes later)
