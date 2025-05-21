@@ -104,15 +104,18 @@ body {
 
 .btn--roll {
   background-color: #007bff;
+  margin: 5px;
   color: white;
 }
 
 .btn--hold {
   background-color: #28a745;
+  margin: 5px;
   color: white;
 }
 
 .new--game {
   background-color: #ffc107;
+  margin: 5px;
   color: black;
 }
