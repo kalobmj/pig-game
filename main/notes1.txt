@@ -13,3 +13,9 @@ possible dice color:
 rgba(0, 99, 124, 0) body
 #2A2B2D dots
 #282D3C border
+
+small features maybe:
+    flame if scrore goes over certain ammount
+    browser sounds for rolling
+    dice rolls 3 times a second
+    

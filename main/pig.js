@@ -9,8 +9,15 @@ const rollDieBtn = document.getElementById("roll-die");
 const holdDieBtn = document.getElementById("hold-die");
 const newGameBtn = document.getElementById("new-game");
 
+// scores
+const leftScoreThisTurn = document.getElementById('left-points');
+const leftScoreTotal = document.getElementById('left-player');
+
+const rightScoreThisTurn = document.getElementById('right-points');
+const rightScoreTotal = document.getElementById('right-player');
+
 // var to keep track of current player
-let currentPLayer = canvas1;
+let currentPlayer = canvas1;
 
 // radius of circle (remains constant)
 let radius = 22;
@@ -82,7 +89,7 @@ rollDieBtn.addEventListener("click", () => {
   console.log(numRolled);
 
   // re-color dice so dots can be drawn over top
-  colorDice(currentPLayer)
+  colorDice(currentPlayer)
 
   // loop thru dot locations to color in dots
   for (let i = 0; i < dotLocations[numRolled].length; i++) {
@@ -91,13 +98,21 @@ rollDieBtn.addEventListener("click", () => {
     let dotColor = "#2A2B2D";
 
     // drawing circle
-    drawCircle(currentPLayer, x, y, radius, dotColor);
+    drawCircle(currentPlayer, x, y, radius, dotColor);
   }
 
-  if (currentPLayer === canvas1) {
-    currentPLayer = canvas2
-  } else {
-    currentPLayer = canvas1
+  
+  // update score this turn (hold button updates total game score)
+  if (currentPlayer === canvas1) {
+    let num = Number(leftScoreThisTurn.innerText)
+    num += numRolled;
+    leftScoreThisTurn.innerText = num;
+    currentPlayer = canvas2;
+  } else if (currentPlayer === canvas2) {
+    let num = Number(rightScoreThisTurn.innerText)
+    num += numRolled;
+    rightScoreThisTurn.innerText = num;
+    currentPlayer = canvas1;
   }
 
 });
@@ -105,14 +120,39 @@ rollDieBtn.addEventListener("click", () => {
 //  NEW GAME BUTTON
 newGameBtn.addEventListener("click", () => {
   console.log("New game button clicked");
-  // clearing everything :D
-  canvas1.clearRect(0, 0, diceLeft.width, diceLeft.height);
-  // getting back color after clearing
-  canvas1.fillStyle = "rgb(0, 99, 124)";
-  canvas1.fillRect(0, 0, 250, 250);
+  // // clearing everything :D
+  // canvas1.clearRect(0, 0, diceLeft.width, diceLeft.height);
+  // // getting back color after clearing
+  // canvas1.fillStyle = "rgb(0, 99, 124)";
+  // canvas1.fillRect(0, 0, 250, 250);
+
+  setupDice();
+
+
 });
 
 // HOLD BUTTON
 holdDieBtn.addEventListener("click", () => {
   console.log("Hold button clicked");
+
+  // update current player's total score
+  // change points this turn to 0 for current player
+  // change current player
+
+  if (currentPlayer === canvas1) {
+    let num = Number(leftScoreThisTurn.innerText);
+    let numTotal = Number(leftScoreTotal.innerText);
+
+    leftScoreTotal.innnerText = (num + numTotal);
+    leftScoreThisTurn.innerText = 0;
+    currentPlayer = canvas2
+  } else if (currentPlayer === canvas2) {
+    let num = Number(rightScoreThisTurn.innerText);
+    let numTotal = Number(rightScoreTotal.innerText);
+
+    rightScoreTotal.innnerText = (num + numTotal);
+    rightScoreThisTurn.innerText = 0;
+    currentPlayer = canvas1;
+  }
+
 });
