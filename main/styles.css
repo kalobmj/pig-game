@@ -28,12 +28,12 @@ body {
 }
 
 #left-die {
-  border: 5px solid #282D3C;
+  border: 5px solid #282d3c;
   border-radius: 40px;
 }
 
 #right-die {
-  border: 5px solid #282D3C;
+  border: 5px solid #282d3c;
   border-radius: 40px;
 }
 
@@ -94,10 +94,25 @@ body {
   margin-left: 10px;
 }
 
-.group-buttons {
-  text-transform: uppercase;
+.btn {
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 20px;
+  text-transform: uppercase;
   display: flexbox;
-  flex-direction: row;
+  border-radius: 5px;
+}
+
+.btn--roll {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn--hold {
+  background-color: #28a745;
+  color: white;
+}
+
+.new--game {
+  background-color: #ffc107;
+  color: black;
 }
