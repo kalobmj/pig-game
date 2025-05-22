@@ -353,7 +353,7 @@ holdDieBtn.addEventListener("click", () => {
 
             currentPlayer = canvas2;
             hasPlayerRolled = false;
-            fireElementLeft.classList.add('hiden');
+            fireElementLeft.classList.add('hidden');
             updatePlayer();
         } else if (currentPlayer === canvas2) {
             let num = Number(rightScoreThisTurn.innerText);
@@ -367,7 +367,7 @@ holdDieBtn.addEventListener("click", () => {
 
             currentPlayer = canvas1;
             hasPlayerRolled = false;
-            fireElementRight.classList.add('hiden');
+            fireElementRight.classList.add('hidden');
             updatePlayer();
         }
     } else {
