@@ -1,3 +1,10 @@
+// import JSConfetti from 'js-confetti'
+
+// const jsConfetti = new JSConfetti()
+
+// jsConfetti.addConfetti();
+
+
 const diceLeft = document.getElementById("left-die");
 const diceRight = document.getElementById("right-die");
 
@@ -51,6 +58,7 @@ function updatePlayer() {
 
 rulesBtn.addEventListener('click', () => {
     // if you want to rewrite the rules better you can
+
     alert(`
             Rules:
                 - Two players take turns rolling their dice. (player 1 = left dice, player 2 = right dice)
@@ -90,7 +98,7 @@ function checkForHighScore() {
 function checkScore() {
     if (currentPlayer === canvas1) {
         // if user scores at or over 100 points, they win !
-        if ((Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText)) >= 100) {
+        if ((Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText)) >= 10) {
             console.log('cavnas1 player has scored at or over 100')
 
             leftScoreTotal.innerText = (Number(leftScoreThisTurn.innerText) + Number(leftScoreTotal.innerText))
@@ -100,6 +108,13 @@ function checkScore() {
                 // hide other btns besides new game
                 rollDieBtn.classList.add('hidden');
                 holdDieBtn.classList.add('hidden');
+                rulesBtn.classList.add('hidden');
+
+                confetti({
+                    particleCount: 300,
+                    spread: 110,
+                    origin: { y: 0.6 },
+                });
 
                 // window alert
                 alert(`piggy 1 wins the game! 🐷🐷`);
@@ -110,7 +125,7 @@ function checkScore() {
         }
 
     } else if (currentPlayer === canvas2) {
-        if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 100) {
+        if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 10) {
             console.log('cavnas2 player has scored at or over 100')
 
             rightScoreTotal.innerText = (Number(rightScoreThisTurn.innerText) + Number(rightScoreTotal.innerText))
@@ -120,6 +135,13 @@ function checkScore() {
                 // hide other btns besides new game
                 rollDieBtn.classList.add('hidden');
                 holdDieBtn.classList.add('hidden');
+                rulesBtn.classList.add('hidden');
+
+                confetti({
+                    particleCount: 300,
+                    spread: 110,
+                    origin: { y: 0.6 },
+                });
 
                 // alert
                 alert(`piggy 2 wins the game! 🐷🐷`);
@@ -200,16 +222,16 @@ rollDieBtn.addEventListener("click", () => {
         console.log(numRolled);
 
         finalNum = numRolled;
-    
+
         // re-color dice so dots can be drawn over top
         colorDice(currentPlayer)
-    
+
         // loop thru dot locations to color in dots
         for (let i = 0; i < dotLocations[numRolled].length; i++) {
             let x = dotLocations[numRolled][i].x * cellsize + (cellsize / 2);
             let y = dotLocations[numRolled][i].y * cellsize + (cellsize / 2);
             let dotColor = "#2A2B2D";
-    
+
             // drawing circle
             drawCircle(currentPlayer, x, y, radius, dotColor);
         }
@@ -226,7 +248,7 @@ rollDieBtn.addEventListener("click", () => {
     function updateScore() {
         // update score this turn (hold button updates total game score)
         if (currentPlayer === canvas1) {
-    
+
             // if user hits 1 -> clear score for turn, and move to next person
             if (finalNum === 1) {
                 leftScoreThisTurn.innerText = 0;
@@ -237,17 +259,17 @@ rollDieBtn.addEventListener("click", () => {
                 hasPlayerRolled = false;
                 return;
             }
-    
+
             let num = Number(leftScoreThisTurn.innerText)
             num += finalNum;
             leftScoreThisTurn.innerText = num;
             hasPlayerRolled = true;
-    
+
             // check score after all this
             checkForHighScore();
             checkScore();
         } else if (currentPlayer === canvas2) {
-    
+
             // if user hits 1 -> clear score for turn, and move to next person
             if (finalNum === 1) {
                 rightScoreThisTurn.innerText = 0;
@@ -258,12 +280,12 @@ rollDieBtn.addEventListener("click", () => {
                 hasPlayerRolled = false;
                 return;
             }
-    
+
             let num = Number(rightScoreThisTurn.innerText)
             num += finalNum;
             rightScoreThisTurn.innerText = num;
             hasPlayerRolled = true;
-    
+
             // check score after all this
             checkForHighScore();
             checkScore();

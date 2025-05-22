@@ -24,6 +24,7 @@ things left to do:
     backgrounds for container divs ✅
     area for rules (maybe) ✅
     dice rolling 3 times on each roll btn press (interval) ✅
+    confetti ✅
     dice rolling sounds
-    confetti & sound
+    confetti sound 
     
