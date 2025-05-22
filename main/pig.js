@@ -96,6 +96,8 @@ function checkScore() {
     } else if (currentPlayer === canvas2) {
         if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 100) {
             console.log('cavnas2 player has scored at or over 100')
+
+            rightScoreTotal.innerText = (Number(rightScoreThisTurn.innerText) + Number(rightScoreTotal.innerText))
             
             setTimeout(() => {
 
@@ -196,6 +198,7 @@ rollDieBtn.addEventListener("click", () => {
         if (numRolled === 1) {
             leftScoreThisTurn.innerText = 0;
             leftPoints.style.color = 'red';
+            fireElementLeft.classList.add('hidden');
             currentPlayer = canvas2;
             updatePlayer();
             hasPlayerRolled = false;
@@ -216,6 +219,7 @@ rollDieBtn.addEventListener("click", () => {
         if (numRolled === 1) {
             rightScoreThisTurn.innerText = 0;
             rightPoints.style.color = 'red';
+            fireElementRight.classList.add('hidden');
             currentPlayer = canvas1;
             updatePlayer();
             hasPlayerRolled = false;

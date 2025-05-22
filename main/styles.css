@@ -3,7 +3,7 @@
 } */
 
 body {
-  height: 95vh;
+  height: 97vh;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -13,6 +13,8 @@ body {
   flex-direction: column;
   font-family: Ranchers;
   letter-spacing: 1px;
+  background-image: url(/assets/barn1.webp);
+  background-size: cover;
 }
 
 #game-container {
@@ -56,6 +58,11 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #a88d66a7;
+  border: 4px solid brown;
+  border-radius: 40px;
+  padding: 5px;
+  text-align: center;
 }
 
 #right-score {
@@ -63,6 +70,32 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #a88d66a7;
+  border: 4px solid brown;
+  border-radius: 40px;
+  padding: 5px;
+  text-align: center;
+}
+
+#score-container {
+  background-color: #91d956c6;
+  border: 2px solid brown;
+  border-radius: 40px;
+  padding: 5px;
+  width: 40%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#current-turn {
+  background-color: #91d956c6;
+  border: 2px solid brown;
+  border-radius: 40px;
+  padding: 5px;
+  text-align: center;
+  padding: 6px;
+  width: 15%;
+  margin-bottom: 15px;
 }
 
 #title-container {
@@ -146,10 +179,12 @@ body {
 
 #right-score-title {
   font-size: 25px;
+  margin-bottom: 0;
 }
 
 #left-score-title {
   font-size: 25px;
+  margin-bottom: 0;
 }
 
 /* right left points, right left player */
@@ -194,6 +229,14 @@ body {
 #points-header {
   position: relative;
   z-index: 3;
+}
+
+.point-header-right {
+  transform: rotate(10deg);
+}
+
+.point-header-left {
+  transform: rotate(-10deg);
 }
 
 #left-points, #right-points {
