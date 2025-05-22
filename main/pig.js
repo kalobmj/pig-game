@@ -58,10 +58,9 @@ rulesBtn.addEventListener('click', () => {
                 - If a player rolls a 1, they score nothing for that turn, and the turn ends, passing to the next player.
                 - If a player rolls a 2, 3, 4, 5, or 6, the value of the dice is added to their current turn's total.
                 -  A player can choose to "hold" at any time during their turn. This means they stop rolling and add their current turn's total to their overall score.
-                
+
                 - The first player to reach 100 points wins the game ~!
                 🐷🐷🐽🐽🐖🐖
-
         `)
 })
 
@@ -192,66 +191,92 @@ setupDice();
 rollDieBtn.addEventListener("click", () => {
     console.log("Roll button clicked");
 
-    const numRolled = Math.floor(Math.random() * 6) + 1;
-    console.log(numRolled);
+    let finalNum = 0;
 
-    // re-color dice so dots can be drawn over top
-    colorDice(currentPlayer)
+    // put dice rolling into a function, so that we can run it 3 times in a second, the 3rd roll is the final roll
 
-    // loop thru dot locations to color in dots
-    for (let i = 0; i < dotLocations[numRolled].length; i++) {
-        let x = dotLocations[numRolled][i].x * cellsize + (cellsize / 2);
-        let y = dotLocations[numRolled][i].y * cellsize + (cellsize / 2);
-        let dotColor = "#2A2B2D";
+    function rollDice() {
+        const numRolled = Math.floor(Math.random() * 6) + 1;
+        console.log(numRolled);
 
-        // drawing circle
-        drawCircle(currentPlayer, x, y, radius, dotColor);
+        finalNum = numRolled;
+    
+        // re-color dice so dots can be drawn over top
+        colorDice(currentPlayer)
+    
+        // loop thru dot locations to color in dots
+        for (let i = 0; i < dotLocations[numRolled].length; i++) {
+            let x = dotLocations[numRolled][i].x * cellsize + (cellsize / 2);
+            let y = dotLocations[numRolled][i].y * cellsize + (cellsize / 2);
+            let dotColor = "#2A2B2D";
+    
+            // drawing circle
+            drawCircle(currentPlayer, x, y, radius, dotColor);
+        }
     }
 
-    // update score this turn (hold button updates total game score)
-    if (currentPlayer === canvas1) {
+    // set interval to run every 1/3 second (3 times in a second)
+    let rollingDiceInterval = setInterval(rollDice, 333);
 
-        // if user hits 1 -> clear score for turn, and move to next person
-        if (numRolled === 1) {
-            leftScoreThisTurn.innerText = 0;
-            leftPoints.style.color = 'red';
-            fireElementLeft.classList.add('hidden');
-            currentPlayer = canvas2;
-            updatePlayer();
-            hasPlayerRolled = false;
-            return;
+    // stops function from running after a second
+    setTimeout(() => {
+        clearInterval(rollingDiceInterval)
+    }, 1100);
+
+    function updateScore() {
+        // update score this turn (hold button updates total game score)
+        if (currentPlayer === canvas1) {
+    
+            // if user hits 1 -> clear score for turn, and move to next person
+            if (finalNum === 1) {
+                leftScoreThisTurn.innerText = 0;
+                leftPoints.style.color = 'red';
+                fireElementLeft.classList.add('hidden');
+                currentPlayer = canvas2;
+                updatePlayer();
+                hasPlayerRolled = false;
+                return;
+            }
+    
+            let num = Number(leftScoreThisTurn.innerText)
+            num += finalNum;
+            leftScoreThisTurn.innerText = num;
+            hasPlayerRolled = true;
+    
+            // check score after all this
+            checkForHighScore();
+            checkScore();
+        } else if (currentPlayer === canvas2) {
+    
+            // if user hits 1 -> clear score for turn, and move to next person
+            if (finalNum === 1) {
+                rightScoreThisTurn.innerText = 0;
+                rightPoints.style.color = 'red';
+                fireElementRight.classList.add('hidden');
+                currentPlayer = canvas1;
+                updatePlayer();
+                hasPlayerRolled = false;
+                return;
+            }
+    
+            let num = Number(rightScoreThisTurn.innerText)
+            num += finalNum;
+            rightScoreThisTurn.innerText = num;
+            hasPlayerRolled = true;
+    
+            // check score after all this
+            checkForHighScore();
+            checkScore();
         }
 
-        let num = Number(leftScoreThisTurn.innerText)
-        num += numRolled;
-        leftScoreThisTurn.innerText = num;
-        hasPlayerRolled = true;
-
-        // check score after all this
-        checkForHighScore();
-        checkScore();
-    } else if (currentPlayer === canvas2) {
-
-        // if user hits 1 -> clear score for turn, and move to next person
-        if (numRolled === 1) {
-            rightScoreThisTurn.innerText = 0;
-            rightPoints.style.color = 'red';
-            fireElementRight.classList.add('hidden');
-            currentPlayer = canvas1;
-            updatePlayer();
-            hasPlayerRolled = false;
-            return;
-        }
-
-        let num = Number(rightScoreThisTurn.innerText)
-        num += numRolled;
-        rightScoreThisTurn.innerText = num;
-        hasPlayerRolled = true;
-
-        // check score after all this
-        checkForHighScore();
-        checkScore();
     }
+
+    setTimeout(() => {
+        updateScore();
+    }, 1300);
+
+    console.log('test')
+
 });
 
 //  NEW GAME BUTTON
