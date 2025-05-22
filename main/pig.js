@@ -1,10 +1,3 @@
-// import JSConfetti from 'js-confetti'
-
-// const jsConfetti = new JSConfetti()
-
-// jsConfetti.addConfetti();
-
-
 const diceLeft = document.getElementById("left-die");
 const diceRight = document.getElementById("right-die");
 
@@ -25,7 +18,6 @@ const rightScoreTotal = document.getElementById('right-player');
 
 // var to keep track of current player
 let currentPlayer = canvas1;
-
 let currentPlayerText = document.getElementById('current-player');
 
 // fire elements
@@ -39,9 +31,11 @@ const leftPoints = document.getElementById('left-points');
 // radius of circle (remains constant)
 let radius = 22;
 
+// rows cols
 let rows = 3;
 let cols = 3;
 
+// cellsize (3x3)
 let cellsize = diceLeft.height / 3;
 
 // var to determine if user has rolled yet
@@ -58,7 +52,6 @@ function updatePlayer() {
 
 rulesBtn.addEventListener('click', () => {
     // if you want to rewrite the rules better you can
-
     alert(`
             Rules:
                 - Two players take turns rolling their dice. (player 1 = left dice, player 2 = right dice)
@@ -70,11 +63,10 @@ rulesBtn.addEventListener('click', () => {
                 - The first player to reach 100 points wins the game ~!
                 🐷🐷🐽🐽🐖🐖
         `)
-})
+});
 
 // function to check if current player has a high score that turn. If they do put un-hide a flame behind their score. Check for a high score on every roll
 function checkForHighScore() {
-
     if (currentPlayer === canvas1) {
         if (Number(leftScoreThisTurn.innerText) >= 10) {
             fireElementLeft.classList.remove('hidden');
@@ -92,7 +84,6 @@ function checkForHighScore() {
             rightPoints.style.color = 'unset';
         }
     }
-
 }
 
 function checkScore() {
@@ -104,7 +95,6 @@ function checkScore() {
             leftScoreTotal.innerText = (Number(leftScoreThisTurn.innerText) + Number(leftScoreTotal.innerText))
 
             setTimeout(() => {
-
                 // hide other btns besides new game
                 rollDieBtn.classList.add('hidden');
                 holdDieBtn.classList.add('hidden');
@@ -119,11 +109,7 @@ function checkScore() {
                 // window alert
                 alert(`piggy 1 wins the game! 🐷🐷`);
             }, 500);
-            // confetti here
-
-            // can either window reload after like 20 seconds, or once user hits new game -> reset game and stop confetti
         }
-
     } else if (currentPlayer === canvas2) {
         if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 100) {
             console.log('cavnas2 player has scored at or over 100')
@@ -131,7 +117,6 @@ function checkScore() {
             rightScoreTotal.innerText = (Number(rightScoreThisTurn.innerText) + Number(rightScoreTotal.innerText))
 
             setTimeout(() => {
-
                 // hide other btns besides new game
                 rollDieBtn.classList.add('hidden');
                 holdDieBtn.classList.add('hidden');
@@ -146,13 +131,9 @@ function checkScore() {
                 // alert
                 alert(`piggy 2 wins the game! 🐷🐷`);
             }, 500);
-
-            // confetti here
-
-            // can either window reload after like 20 seconds, or once user hits new game -> reset game and stop confetti
         }
     }
-}
+};
 
 function colorDice(canvas) {
     // fill dice with blue color
@@ -179,9 +160,11 @@ function drawCircle(canvas, x, y, radius, color) {
 
 // function to set up dice at beginning
 function setupDice() {
+    // color both dice blue
     colorDice(canvas1);
     colorDice(canvas2);
 
+    // calculate random die face for each dice
     const randomRoll1 = Math.floor(Math.random() * 6) + 1;
     const randomRoll2 = Math.floor(Math.random() * 6) + 1;
 
@@ -213,10 +196,10 @@ setupDice();
 rollDieBtn.addEventListener("click", () => {
     console.log("Roll button clicked");
 
+    // var to hold the final dice roll
     let finalNum = 0;
 
-    // put dice rolling into a function, so that we can run it 3 times in a second, the 3rd roll is the final roll
-
+    // function to roll dice
     function rollDice() {
         const numRolled = Math.floor(Math.random() * 6) + 1;
         console.log(numRolled);
@@ -245,10 +228,10 @@ rollDieBtn.addEventListener("click", () => {
         clearInterval(rollingDiceInterval)
     }, 1100);
 
+    // updates score with last dice roll
     function updateScore() {
         // update score this turn (hold button updates total game score)
         if (currentPlayer === canvas1) {
-
             // if user hits 1 -> clear score for turn, and move to next person
             if (finalNum === 1) {
                 leftScoreThisTurn.innerText = 0;
@@ -269,7 +252,6 @@ rollDieBtn.addEventListener("click", () => {
             checkForHighScore();
             checkScore();
         } else if (currentPlayer === canvas2) {
-
             // if user hits 1 -> clear score for turn, and move to next person
             if (finalNum === 1) {
                 rightScoreThisTurn.innerText = 0;
@@ -290,15 +272,11 @@ rollDieBtn.addEventListener("click", () => {
             checkForHighScore();
             checkScore();
         }
-
     }
 
     setTimeout(() => {
         updateScore();
     }, 1300);
-
-    console.log('test')
-
 });
 
 //  NEW GAME BUTTON
@@ -373,5 +351,4 @@ holdDieBtn.addEventListener("click", () => {
     } else {
         alert(`${currentPlayerText.innerText} needs to roll first before holding !`)
     }
-
 });
