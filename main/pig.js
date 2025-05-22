@@ -98,7 +98,7 @@ function checkForHighScore() {
 function checkScore() {
     if (currentPlayer === canvas1) {
         // if user scores at or over 100 points, they win !
-        if ((Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText)) >= 10) {
+        if ((Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText)) >= 100) {
             console.log('cavnas1 player has scored at or over 100')
 
             leftScoreTotal.innerText = (Number(leftScoreThisTurn.innerText) + Number(leftScoreTotal.innerText))
@@ -125,7 +125,7 @@ function checkScore() {
         }
 
     } else if (currentPlayer === canvas2) {
-        if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 10) {
+        if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 100) {
             console.log('cavnas2 player has scored at or over 100')
 
             rightScoreTotal.innerText = (Number(rightScoreThisTurn.innerText) + Number(rightScoreTotal.innerText))
