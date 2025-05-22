@@ -90,7 +90,7 @@ function checkScore() {
   if (currentPlayer === canvas1) {
     // if user scores at or over 100 points, they win !
     if (
-      Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText) >= 10) { // just for fast testing use lower number. original number : 100
+      Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText) >= 100) {
       console.log("cavnas1 player has scored at or over 100");
 
       leftScoreTotal.innerText =
