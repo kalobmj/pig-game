@@ -11,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: Ranchers;
+  font-family: Ranchers, sans-serif;
   letter-spacing: 1px;
   background-image: url(/assets/barn1.webp);
   background-size: cover;
