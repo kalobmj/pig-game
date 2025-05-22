@@ -98,6 +98,13 @@ body {
   margin-bottom: 15px;
 }
 
+/* #information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+} */
+
 #title-container {
   display: flex;
   justify-content: center;
@@ -158,6 +165,10 @@ body {
   background-color: #ffc107;
   margin: 5px;
   color: black;
+}
+
+.rules {
+  background-color: #af4b35;
 }
 
 /* if classList includes hidden, hide element */
@@ -233,6 +244,12 @@ body {
 
 .point-header-right {
   transform: rotate(10deg);
+}
+
+#rules-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .point-header-left {
