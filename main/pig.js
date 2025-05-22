@@ -4,7 +4,7 @@ const diceRight = document.getElementById("right-die");
 const canvas1 = diceLeft.getContext("2d");
 const canvas2 = diceRight.getContext("2d");
 
-// Andy buttons
+// bottom buttons
 const rollDieBtn = document.getElementById("roll-die");
 const holdDieBtn = document.getElementById("hold-die");
 const newGameBtn = document.getElementById("new-game");
@@ -15,16 +15,18 @@ const leftScoreTotal = document.getElementById('left-player');
 const rightScoreThisTurn = document.getElementById('right-points');
 const rightScoreTotal = document.getElementById('right-player');
 
-// // score vars (might not need)
-// let leftScore = 0;
-// let leftScoreAll = 0;
-// let rightScore = 0;
-// let rightScoreAll = 0;
-
 // var to keep track of current player
 let currentPlayer = canvas1;
 
 let currentPlayerText = document.getElementById('current-player');
+
+// fire elements
+const fireElementLeft = document.getElementById('fire-left');
+const fireElementRight = document.getElementById('fire-right');
+
+// player points that round
+const rightPoints = document.getElementById('right-points');
+const leftPoints = document.getElementById('left-points');
 
 // radius of circle (remains constant)
 let radius = 22;
@@ -46,47 +48,68 @@ function updatePlayer() {
     }
 }
 
+// function to check if current player has a high score that turn. If they do put un-hide a flame behind their score. Check for a high score on every roll
+function checkForHighScore() {
+
+    if (currentPlayer === canvas1) {
+        if (Number(leftScoreThisTurn.innerText) >= 10) {
+            fireElementLeft.classList.remove('hidden');
+            leftPoints.style.color = '#007bff';
+        } else {
+            fireElementLeft.classList.add('hidden');
+            leftPoints.style.color = 'unset';
+        }
+    } else if (currentPlayer === canvas2) {
+        if (Number(rightScoreThisTurn.innerText) >= 10) {
+            fireElementRight.classList.remove('hidden')
+            rightPoints.style.color = '#007bff';
+        } else {
+            fireElementRight.classList.add('hidden')
+            rightPoints.style.color = 'unset';
+        }
+    }
+
+}
+
 function checkScore() {
     if (currentPlayer === canvas1) {
-        // logic for player 1 winning game
-
-        console.log('checking score for canvas1 player')
-        console.log(leftScoreTotal.innerText)
-        console.log(typeof leftScoreTotal.innerText)
-        console.log(Number(leftScoreTotal.innerText))
-
         // if user scores at or over 100 points, they win !
-        if ((Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText)) >= 10) {
-
+        if ((Number(leftScoreTotal.innerText) + Number(leftScoreThisTurn.innerText)) >= 100) {
             console.log('cavnas1 player has scored at or over 100')
-
-            // Number(leftScoreThisTurn.innerText)
-
-            // update main score
-
+    
             leftScoreTotal.innerText = (Number(leftScoreThisTurn.innerText) + Number(leftScoreTotal.innerText))
 
             setTimeout(() => {
 
-                
-                alert(`piggy 1 wins the game!`);
+                // hide other btns besides new game
+                rollDieBtn.classList.add('hidden');
+                holdDieBtn.classList.add('hidden');
+
+                // window alert
+                alert(`piggy 1 wins the game! 🐷🐷`);
             }, 500);
             // confetti here
-
-            // can either window reload after like 20 seconds, or once user hits new game -> reset game and stop confetti
             
+            // can either window reload after like 20 seconds, or once user hits new game -> reset game and stop confetti
         }
         
     } else if (currentPlayer === canvas2) {
-        // logic for player 2 winning game
-
-        if (rightScoreTotal.innerText >= 100) {
+        if ((Number(rightScoreTotal.innerText) + Number(rightScoreThisTurn.innerText)) >= 100) {
+            console.log('cavnas2 player has scored at or over 100')
             
-            alert(`${currentPlayerText.innerText} wins the game!`);
+            setTimeout(() => {
+
+                // hide other btns besides new game
+                rollDieBtn.classList.add('hidden');
+                holdDieBtn.classList.add('hidden');
+
+                // alert
+                alert(`piggy 2 wins the game! 🐷🐷`);
+            }, 500);
+            
             // confetti here
     
             // can either window reload after like 20 seconds, or once user hits new game -> reset game and stop confetti
-
         }
     }
 }
@@ -143,6 +166,7 @@ function setupDice() {
     }
 };
 
+// set up dice on first window load
 setupDice();
 
 // ROLL BUTTON
@@ -171,6 +195,7 @@ rollDieBtn.addEventListener("click", () => {
         // if user hits 1 -> clear score for turn, and move to next person
         if (numRolled === 1) {
             leftScoreThisTurn.innerText = 0;
+            leftPoints.style.color = 'red';
             currentPlayer = canvas2;
             updatePlayer();
             hasPlayerRolled = false;
@@ -181,17 +206,16 @@ rollDieBtn.addEventListener("click", () => {
         num += numRolled;
         leftScoreThisTurn.innerText = num;
         hasPlayerRolled = true;
-
-        // check score after all this
-        checkScore();
-
         
-        // currentPlayer = canvas2;
+        // check score after all this
+        checkForHighScore();
+        checkScore();
     } else if (currentPlayer === canvas2) {
         
         // if user hits 1 -> clear score for turn, and move to next person
         if (numRolled === 1) {
             rightScoreThisTurn.innerText = 0;
+            rightPoints.style.color = 'red';
             currentPlayer = canvas1;
             updatePlayer();
             hasPlayerRolled = false;
@@ -204,17 +228,16 @@ rollDieBtn.addEventListener("click", () => {
         hasPlayerRolled = true;
         
         // check score after all this
+        checkForHighScore();
         checkScore();
-
-        // currentPlayer = canvas1;
     }
-
 });
 
 //  NEW GAME BUTTON
 newGameBtn.addEventListener("click", () => {
     console.log("New game button clicked");
 
+    // setup fresh dice
     setupDice();
 
     // reset scores
@@ -224,9 +247,21 @@ newGameBtn.addEventListener("click", () => {
     rightScoreTotal.innerText = 0;
     hasPlayerRolled = false;
 
+    // change score colors back to default
+    leftPoints.style.color = 'unset';
+    rightPoints.style.color = 'unset';
+    
     // set current player to player 1
     currentPlayer = canvas1;
     updatePlayer();
+
+    // get rid of flames if applicable
+    fireElementLeft.classList.add('hidden');
+    fireElementRight.classList.add('hidden');
+
+    // remove hidden classList if applicable
+    rollDieBtn.classList.remove('hidden')
+    holdDieBtn.classList.remove('hidden')
 
 });
 
@@ -245,9 +280,12 @@ holdDieBtn.addEventListener("click", () => {
     
             leftScoreTotal.innerText = newNum;
             leftScoreThisTurn.innerText = 0;
-    
+            
+            checkForHighScore();
+            
             currentPlayer = canvas2;
             hasPlayerRolled = false;
+            fireElementLeft.classList.add('hiden');
             updatePlayer();
         } else if (currentPlayer === canvas2) {
             let num = Number(rightScoreThisTurn.innerText);
@@ -257,8 +295,11 @@ holdDieBtn.addEventListener("click", () => {
             rightScoreTotal.innerText = newNum;
             rightScoreThisTurn.innerText = 0;
             
+            checkForHighScore();
+            
             currentPlayer = canvas1;
             hasPlayerRolled = false;
+            fireElementRight.classList.add('hiden');
             updatePlayer();
         }
     } else {

@@ -18,4 +18,12 @@ small features maybe:
     flame if scrore goes over certain ammount
     browser sounds for rolling
     dice rolls 3 times a second
+
+things left to do:
+    main background-image
+    backgrounds for container divs
+    area for rules (maybe)
+    dice rolling 3 times on each roll btn press (interval)
+    dice rolling sounds
+    confetti sound
     

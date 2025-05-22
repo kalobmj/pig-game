@@ -1,11 +1,18 @@
+/* html {
+  height: 100%;
+} */
+
 body {
-  height: 100vh;
+  height: 95vh;
+  width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: Ranchers;
+  letter-spacing: 1px;
 }
 
 #game-container {
@@ -118,4 +125,84 @@ body {
   background-color: #ffc107;
   margin: 5px;
   color: black;
+}
+
+/* if classList includes hidden, hide element */
+.hidden {
+  display: none !important;
+}
+
+#piggy-1 {
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+#piggy-2 {
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+#right-score-title {
+  font-size: 25px;
+}
+
+#left-score-title {
+  font-size: 25px;
+}
+
+/* right left points, right left player */
+#right-points {
+  font-size: 50px;
+  margin: 0;
+}
+
+#left-points {
+  font-size: 50px;
+  margin: 0;
+}
+
+#left-player {
+  font-size: 50px;
+  margin: 0;
+}
+
+#right-player {
+  font-size: 50px;
+  margin: 0;
+}
+
+#left {
+  margin-top: 0;
+}
+
+#right {
+  margin-top: 0;
+}
+
+#turn-title {
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#die-img, #farmer-img, #main-title {
+  margin-bottom: 0;
+}
+
+#points-header {
+  position: relative;
+  z-index: 3;
+}
+
+#left-points, #right-points {
+  position: relative;
+  z-index: 3;
+  /* color: #007bff; */
+}
+
+#fire-right, #fire-left {
+  position: absolute;
+  z-index: 2;
 }
